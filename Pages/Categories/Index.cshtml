@@ -19,11 +19,15 @@
         @foreach (var item in Model.Categories)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>
-                    <span></span>
-                </td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                   </td>
+                 <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class=" btn btn-danger">Delete</a>
+                 </td>
             </tr>
         }
     </tbody>
@@ -32,7 +36,9 @@
 <p>
     <a asp-page="Create" class=" btn btn-success">Create New</a>
 </p>
-<table class="table"></table>
+<table class="table"></table>   
 <thead>
 
 </thead>
+
+

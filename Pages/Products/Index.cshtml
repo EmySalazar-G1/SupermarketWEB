@@ -15,7 +15,6 @@
             <th>@Html.DisplayNameFor(model => model.Products[0].Price)</th>
             <th>@Html.DisplayNameFor(model => model.Products[0].Stock)</th>
             <th>@Html.DisplayNameFor(model => model.Products[0].CategoryId)</th>
-            <th>@Html.DisplayNameFor(model => model.Products[0].Category)</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -36,16 +35,9 @@
                     @Html.DisplayFor(modelItem => item.Stock)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Stock)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.CategoryId)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                </td>
+              
             </tr>
         }
     </tbody>

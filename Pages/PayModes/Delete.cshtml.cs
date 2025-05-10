@@ -24,7 +24,7 @@ namespace SupermarketWEB.Pages.PayModes
             {
                 return NotFound();
             }
-            var PayMode = await _context.Providers.FirstOrDefaultAsync(m => m.Id == id);
+            var PayMode = await _context.PayModes.FirstOrDefaultAsync(m => m.Id == id);
 
             if (PayMode == null)
             {
@@ -38,18 +38,20 @@ namespace SupermarketWEB.Pages.PayModes
         }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.PayModes== null)
+            if (id == null || _context.PayModes == null)
             {
                 return NotFound();
             }
-            var product = await _context.Providers.FindAsync(id);
-            if (product != null)
+            var payMode = await _context.PayModes.FindAsync(id); 
+
+            if (payMode != null)
             {
-                PayMode = PayMode;
-                _context.PayModes.Remove(PayMode);
+                _context.PayModes.Remove(payMode); 
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToPage("./Index");
         }
+
     }
 }

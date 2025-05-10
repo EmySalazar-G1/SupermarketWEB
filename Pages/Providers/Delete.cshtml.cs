@@ -9,13 +9,12 @@ namespace SupermarketWEB.Pages.Providers
     public class DeleteModel : PageModel
     {
         private readonly SumermarketContext _context;
-
         public DeleteModel(SumermarketContext context)
         {
             _context = context;
         }
-        [BindProperty]
 
+        [BindProperty]
         public Provider Providers { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -24,16 +23,15 @@ namespace SupermarketWEB.Pages.Providers
             {
                 return NotFound();
             }
+
             var provider = await _context.Providers.FirstOrDefaultAsync(m => m.Id == id);
 
             if (provider == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Providers = Providers;
-            }
+
+            Providers = provider; 
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(int? id)
@@ -42,13 +40,14 @@ namespace SupermarketWEB.Pages.Providers
             {
                 return NotFound();
             }
-            var product = await _context.Providers.FindAsync(id);
-            if (product != null)
+
+            var provider = await _context.Providers.FindAsync(id);
+            if (provider != null)
             {
-                Providers = Providers;
-                _context.Providers.Remove(Providers);
+                _context.Providers.Remove(provider); 
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToPage("./Index");
         }
     }

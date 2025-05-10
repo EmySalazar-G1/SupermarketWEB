@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 using SupermarketWEB.Models;
 
-namespace SupermarketWEB.Pages.Edit
+namespace SupermarketWEB.Pages.Products
 {
     public class EditModel : PageModel
     {

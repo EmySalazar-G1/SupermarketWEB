@@ -6,6 +6,8 @@ namespace SupermarketWEB.Data
 {
     public class SumermarketContext : DbContext
     {
+        internal readonly object Edit;
+
         public SumermarketContext(DbContextOptions options) : base(options)
         {
         }

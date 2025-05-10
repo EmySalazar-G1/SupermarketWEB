@@ -23,7 +23,7 @@ namespace SupermarketWEB.Pages.Providers
         public Provider Provider { get; set; } = default!;
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.Provider == null || Provider == null)
+            if (!ModelState.IsValid ||  Provider == null)
             {
                 return Page();
             }

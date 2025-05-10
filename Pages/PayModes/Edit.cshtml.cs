@@ -25,12 +25,13 @@ namespace SupermarketWEB.Pages.PayModes
                 return NotFound();
             }
 
-            var provider = await _context.PayModes.FirstOrDefaultAsync(m => m.Id == id);
-            if (provider == null)
+            var payMode = await _context.PayModes.FirstOrDefaultAsync(m => m.Id == id);
+            if (payMode == null) 
             {
                 return NotFound();
             }
-            PayModes = PayModes;
+            PayModes = payMode;  
+
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()
@@ -49,7 +50,7 @@ namespace SupermarketWEB.Pages.PayModes
 
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductsExists(PayModes.Id))
+                if (!PayModesExists(PayModes.Id))
                 {
                     return NotFound();
                 }
@@ -61,9 +62,9 @@ namespace SupermarketWEB.Pages.PayModes
             return RedirectToPage("./Index");
 
         }
-        private bool ProductsExists(int id)
+        private bool PayModesExists(int id)
         {
-            return (_context.Providers?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.PayModes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

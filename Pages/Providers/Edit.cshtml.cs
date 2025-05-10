@@ -49,7 +49,7 @@ namespace SupermarketWEB.Pages.Providers
 
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductsExists(Providers.Id))
+                if (!ProvidersExists(Providers.Id))
                 {
                     return NotFound();
                 }
@@ -61,7 +61,7 @@ namespace SupermarketWEB.Pages.Providers
             return RedirectToPage("./Index");
 
         }
-        private bool ProductsExists(int id)
+        private bool ProvidersExists(int id)
         {
             return (_context.Providers?.Any(e => e.Id == id)).GetValueOrDefault();
         }

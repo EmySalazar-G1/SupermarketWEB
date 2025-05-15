@@ -1,12 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SupermarketWEB.Models;
+
 
 namespace SupermarketWEB.Pages.Account
 {
     public class LoginModel : PageModel
-    {
-        public void OnGet()
+
         {
+            [BindProperty]
+            public User User { get; set; }
+            public void OnGet()
+            {
+            }
         }
     }
-}

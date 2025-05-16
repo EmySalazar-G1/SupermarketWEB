@@ -9,8 +9,8 @@ namespace SupermarketWEB.Pages.Products
 {
     public class CreateModel : PageModel
     {
-        private readonly SumermarketContext _context;
-        public CreateModel(SumermarketContext context)
+        private readonly SupermarketContext _context;
+        public CreateModel(SupermarketContext context)
         {
             _context = context;
         }

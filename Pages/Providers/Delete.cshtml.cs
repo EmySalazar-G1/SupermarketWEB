@@ -8,8 +8,8 @@ namespace SupermarketWEB.Pages.Providers
 {
     public class DeleteModel : PageModel
     {
-        private readonly SumermarketContext _context;
-        public DeleteModel(SumermarketContext context)
+        private readonly SupermarketContext _context;
+        public DeleteModel(SupermarketContext context)
         {
             _context = context;
         }

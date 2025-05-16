@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SupermarketWEB.Data;
 
@@ -10,12 +9,10 @@ using SupermarketWEB.Data;
 
 namespace SupermarketWEB.Migrations
 {
-    [DbContext(typeof(SumermarketContext))]
-    [Migration("20250510054332_AddPayModeAndProvidersTablesFixed")]
-    partial class AddPayModeAndProvidersTablesFixed
+    [DbContext(typeof(SupermarketContext))]
+    partial class SupermarketContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,7 +86,7 @@ namespace SupermarketWEB.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("SupermarketWEB.Models.Providers", b =>
+            modelBuilder.Entity("SupermarketWEB.Models.Provider", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

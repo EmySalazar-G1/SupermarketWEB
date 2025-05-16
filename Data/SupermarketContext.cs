@@ -4,11 +4,9 @@ using System.Runtime.InteropServices.ObjectiveC;
 
 namespace SupermarketWEB.Data
 {
-    public class SumermarketContext : DbContext
+    public class SupermarketContext : DbContext
     {
-        internal readonly object Edit;
-
-        public SumermarketContext(DbContextOptions options) : base(options)
+        public SupermarketContext(DbContextOptions options) : base(options)
         {
         }
 

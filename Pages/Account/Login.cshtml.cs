@@ -1,41 +1,52 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using SupermarketWEB.Data;
 using SupermarketWEB.Models;
-using System.Runtime.InteropServices;
+using System;
 using System.Security.Claims;
-
 
 namespace SupermarketWEB.Pages.Account
 {
     public class LoginModel : PageModel
-
     {
+        private readonly SupermarketContext _context;
+
+        public LoginModel(SupermarketContext context)
+        {
+            _context = context;
+        }
+
         [BindProperty]
         public User User { get; set; }
-        public void OnGet()
-        {
-        }
+
+        public string ErrorMessage { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
-            if (User.Email == "correo@gmail.com" && User.Password == "12345")
+            var userInDb = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == User.Email && u.Password == User.Password);
+
+            if (userInDb == null)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, "admin"),
-                    new Claim(ClaimTypes.Email, User.Email),
-                };
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
-                return RedirectToPage("/index");
+                ErrorMessage = "Credenciales inválidas.";
+                return Page();
             }
-            return Page();
 
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, User.Email),
+                new Claim(ClaimTypes.Role, "User")
+            };
+
+            var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync("MyCookieAuth", principal);
+
+            return RedirectToPage("/Index");
         }
     }
 }

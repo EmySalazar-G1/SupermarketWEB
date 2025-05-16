@@ -13,5 +13,10 @@ namespace SupermarketWEB.Pages.Account
             public void OnGet()
             {
             }
+
+        public void OnPost() 
+        {
+            Console.WriteLine("User: " + User.Email + "Password: " + User.Password);
+        }
         }
     }
